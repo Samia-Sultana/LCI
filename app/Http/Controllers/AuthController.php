@@ -13,7 +13,10 @@ class AuthController extends Controller
     //     $this->middleware('auth:api', ['except' => ['login', 'register']]);
     // }
     public function register(Request $request){
-        $validator = Validator::make($request->all, [
+
+        info($request);
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -31,6 +34,8 @@ class AuthController extends Controller
         ]);
     }
     public function login(Request $request){
+
+        info("im here");
 
     }
 }
