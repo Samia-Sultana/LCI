@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;
 
 class AuthController extends Controller
@@ -55,5 +56,15 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
 
+    }
+
+    public function profile(){
+        return response()->json(auth()->user());
+    }
+
+    public function logout(){
+        auth()->logout();
+        JWTAuth::invalidate(JWTAuth::getToken());
+        return response()->json(['message' => 'User logged out successfully']);
     }
 }
